@@ -85,7 +85,7 @@ namespace HotelManageDL.Repositories.ServiceRepo
 
         public async Task<int> TotalapprovedBranchl()
         {
-            return await _context.Hotels.CountAsync();
+            return await _context.HotelBranches.CountAsync();
         }
     }
 }

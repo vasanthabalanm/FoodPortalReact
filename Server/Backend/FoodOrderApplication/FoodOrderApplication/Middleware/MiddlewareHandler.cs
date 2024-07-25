@@ -28,6 +28,12 @@ namespace FoodOrderApplication.Middleware
                 errorMessage = ex.Message;
             }
 
+            else if(ex is DuplicateRecordException)
+            {
+                statuscode = HttpStatusCode.Conflict;
+                errorMessage = ex.Message;
+            }
+
             context.Response.StatusCode = (int)statuscode;
             context.Response.ContentType = "application/json";
 

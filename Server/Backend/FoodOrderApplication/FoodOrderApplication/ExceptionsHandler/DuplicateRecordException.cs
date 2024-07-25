@@ -5,7 +5,7 @@
         string message;
         public DuplicateRecordException()
         {
-            message = "This Record is already present";
+            message = "This mail is already exsist";
         }
         public DuplicateRecordException(string message)
         {

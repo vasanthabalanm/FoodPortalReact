@@ -36,14 +36,18 @@ namespace FoodOrderApplication.Controllers
         }
 
         [HttpDelete("DeletePendingUser")]
-        public async Task<string> DeletePendingUser(int id)
+        public async Task<IActionResult> DeletePendingUser(int id)
         {
             var userId = await _pendingUser.DeletePendingUserDetails(id);
             if (userId == null)
             {
-                throw new NotFoundExceptionHandler("There is No user");
+                throw new NotFoundExceptionHandler("There is no user");
             }
-            return "Pending User Deleted Succussfully";
+            return Ok(new
+            {
+                Status = 200,
+                Message = "PendingUser has been deleted"
+            });
         }
 
         //Vendor

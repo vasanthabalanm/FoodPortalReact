@@ -33,6 +33,11 @@ namespace FoodOrderApplication.Middleware
                 statuscode = HttpStatusCode.Conflict;
                 errorMessage = ex.Message;
             }
+            else if(ex.Message == "password is incorrect")
+            {
+                statuscode = HttpStatusCode.BadRequest;
+                errorMessage = ex.Message;
+            }
 
             context.Response.StatusCode = (int)statuscode;
             context.Response.ContentType = "application/json";

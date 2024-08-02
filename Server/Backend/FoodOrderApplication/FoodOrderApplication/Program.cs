@@ -50,8 +50,6 @@ app.UseCors("CORSPolicy");
 
 app.UseHttpsRedirection();
 
-app.UseStaticFiles();
-
 app.UseAuthorization();
 
 app.UseMiddleware<MiddlewareHandler>();

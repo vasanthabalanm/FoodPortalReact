@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodOrderApplication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] //api/ApprovedUserController/
     [ApiController]
     public class ApprovedUserController : ControllerBase
     {
@@ -127,23 +127,12 @@ namespace FoodOrderApplication.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> GetUserInfoEmail(ApprovedUser data)
         {
-            try
+            var result = await _approvedUser.GetUserInfoByEmail(data);
+            if (result == null)
             {
-                var result = await _approvedUser.GetUserInfoByEmail(data);
-                if (result == null)
-                {
-                    throw new NotFoundExceptionHandler("There is no Data by the specific Email ID");
-                }
-                return Ok(result);
+                throw new NotFoundExceptionHandler("There is no Data by the specific Email ID");
             }
-            catch (Exception ex)
-            {
-                if (ex.Message == "password is incorrect")
-                {
-                    return BadRequest(ex.Message);
-                }
-                return BadRequest(ex.Message);
-            }
+            return Ok(result);
         }
 
         [HttpPut("UpdatePassword")]
